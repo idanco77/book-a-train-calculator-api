@@ -13,12 +13,14 @@ class OrderedTimeController extends Controller
     {
         $this->validate($request, [
             'email' => ['required', 'email'],
-            'orderedTime' => ['required', 'string']
+            'orderedTime' => ['required', 'numeric']
         ]);
 
         $orderedTime = OrderedTime::create([
             'email' => $request->email,
-            'ordered_time' => Carbon::createFromTimestamp($request->orderedTime, 3)
+            'order_open_time_utc' => Carbon::createFromTimestamp($request->orderedTime),
+            'order_open_time_israel' => Carbon::createFromTimestamp($request->orderedTime, 3),
+            'departure_time_israel' => Carbon::createFromTimestamp($request->orderedTime, 3)->addHours(85),
         ]);
 
         $this->dispatch(new SendEmails($orderedTime));

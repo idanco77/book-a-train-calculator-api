@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderedTimesTable extends Migration
+class CreateFailedJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateOrderedTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordered_times', function (Blueprint $table) {
+        Schema::create('failed_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email');
-            $table->dateTime('order_open_time_utc');
-            $table->dateTime('order_open_time_israel');
-            $table->dateTime('departure_time_israel');
-            $table->timestamps();
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateOrderedTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordered_times');
+        Schema::dropIfExists('failed_jobs');
     }
 }

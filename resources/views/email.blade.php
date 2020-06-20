@@ -4,9 +4,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
+<body dir="rtl" style="text-align: right">
 <p>
-    אימייל נשלח
+זוהי תזכורת להזמנת רכבת בתאריך:
 </p>
+<p>
+{{ \Carbon\Carbon::parse($orderedTime->departure_time_israel)->format('d/m/Y H:i:s') }}
+</p>
+<p>ההזמנה נפתחת עכשיו</p>
+<p>להזמנת השובר באתר רכבת ישראל לחץ כאן</p>
+<a href="https://www.rail.co.il/" target="_blank"></a>
 </body>
 </html>

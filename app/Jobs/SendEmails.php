@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\OrderedTimeShip;
 use App\Models\OrderedTime;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -35,6 +36,6 @@ class SendEmails implements ShouldQueue
     public function handle()
     {
         return Mail::to($this->orderedTime->email)
-            ->later($this->orderedTime->ordered_time, new OrderedTimeShip());
+            ->later(Carbon::parse($this->orderedTime->order_open_time_utc), new OrderedTimeShip($this->orderedTime));
     }
 }
