@@ -12,7 +12,6 @@
 {{ \Carbon\Carbon::parse($orderedTime->departure_time_israel)->format('d/m/Y H:i:s') }}
 </p>
 <p>ההזמנה נפתחת עכשיו</p>
-<p>להזמנת השובר באתר רכבת ישראל לחץ כאן</p>
-<a href="https://www.rail.co.il/" target="_blank"></a>
+<p><a href="https://www.rail.co.il/" target="_blank">להזמנת השובר באתר רכבת ישראל לחץ כאן</a></p>
 </body>
 </html>
