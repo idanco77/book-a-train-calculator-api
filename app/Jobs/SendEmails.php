@@ -22,11 +22,11 @@ class SendEmails implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param OrderedTime $orderedTime
+     * @param
      */
-    public function __construct(OrderedTime $orderedTime)
+    public function __construct()
     {
-        $this->orderedTime = $orderedTime;
+
     }
 
     /**
@@ -36,6 +36,9 @@ class SendEmails implements ShouldQueue
      */
     public function handle()
     {
+        $now = Carbon::now();
+        OrderedTime::whereBetween('order_open_time_utc', $now, $now - 60)->get();
+
         $info = Mail::to($this->orderedTime->email)
             ->later(Carbon::parse($this->orderedTime->order_open_time_utc), new OrderedTimeShip($this->orderedTime));
         Log::info($info);
