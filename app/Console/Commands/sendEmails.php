@@ -35,5 +35,7 @@ class sendEmails extends Command
                 '. OrderedTime: (timestamp converted to server local time)' .
                 Carbon::parse($orderedTime->orderTimestamp)->format('d/m/Y H:i:s'));
         }
+
+        Log::channel('emails')->info('cronjob runs. Time is (carbon::now)' . Carbon::now()->format('d/m/Y H:i:s'));
     }
 }
