@@ -16,9 +16,8 @@ class CreateOrderedTimesTable extends Migration
         Schema::create('ordered_times', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
-            $table->dateTime('order_open_time_utc');
-            $table->dateTime('order_open_time_israel');
-            $table->dateTime('departure_time_israel');
+            $table->unsignedInteger('departure_timestamp');
+            $table->unsignedInteger('order_timestamp');
             $table->timestamps();
         });
     }

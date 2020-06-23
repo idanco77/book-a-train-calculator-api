@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\OrderedTime;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -31,6 +32,9 @@ class OrderedTimeShip extends Mailable
      */
     public function build()
     {
-        return $this->subject('email sent')->markdown('email')->with('orderedTime', $this->orderedTime);
+        $departureTimestamp = Carbon::parse($this->orderedTime->departure_timestamp)
+            ->timezone(3)
+            ->format('d/m/Y H:i:s');
+        return $this->subject('email sent')->markdown('email')->with('departureTimestamp', $departureTimestamp);
     }
 }

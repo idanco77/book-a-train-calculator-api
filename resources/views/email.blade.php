@@ -9,7 +9,7 @@
 זוהי תזכורת להזמנת רכבת בתאריך:
 </p>
 <p>
-{{ \Carbon\Carbon::parse($orderedTime->departure_time_israel)->format('d/m/Y H:i:s') }}
+{{ $departureTimestamp }}
 </p>
 <p>ההזמנה נפתחת עכשיו</p>
 <p><a href="https://www.rail.co.il/" target="_blank">להזמנת השובר באתר רכבת ישראל לחץ כאן</a></p>

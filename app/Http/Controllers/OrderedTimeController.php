@@ -12,16 +12,16 @@ class OrderedTimeController extends Controller
     {
         $this->validate($request, [
             'email' => ['required', 'email'],
-            'orderedTime' => ['required', 'numeric']
+            'departureTimestamp' => ['required', 'numeric'],
+            'orderedTimestamp' => ['required', 'numeric']
         ]);
 
        OrderedTime::create([
             'email' => $request->email,
-            'order_open_time_utc' => Carbon::createFromTimestamp($request->orderedTime),
-            'order_open_time_israel' => Carbon::createFromTimestamp($request->orderedTime, 3),
-            'departure_time_israel' => Carbon::createFromTimestamp($request->orderedTime, 3)->addHours(48),
+            'departure_timestamp' => $request->departureTimestamp,
+            'order_timestamp' => $request->orderedTimestamp,
         ]);
 
-        return response()->json(['message' => 'email sent successfully'], 200);
+        return response()->json(['message' => 'saved successfully'], 200);
     }
 }
