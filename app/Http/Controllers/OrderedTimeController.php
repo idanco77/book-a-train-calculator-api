@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderedTime;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderedTimeController extends Controller
